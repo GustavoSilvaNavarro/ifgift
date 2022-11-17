@@ -1,4 +1,4 @@
-const BASEurl = 'http://localhost:3333';
+const BASEurl = 'http://localhost:8080';
 
 export const getAllUsers = async () => {
   try {

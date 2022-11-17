@@ -1,4 +1,4 @@
-import Profile from '../models/profile';
+import Profile from '../models/profile.js';
 import jwt from 'jsonwebtoken';
 
 export const getAllProfiles = async ctx => {

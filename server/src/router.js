@@ -1,7 +1,7 @@
 import Router from 'koa-router';
 const router = new Router();
-import { getAllProfiles, getProfileInfo, insertProfile, updateProfile } from './controllers/profile';
-import { fetchMyLists, insertList, findByIdAndUpdate, deleteList } from './controllers/lists';
+import { getAllProfiles, getProfileInfo, insertProfile, updateProfile } from './controllers/profile.js';
+import { fetchMyLists, insertList, findByIdAndUpdate, deleteList } from './controllers/lists.js';
 
 router.get('/allprofiles', getAllProfiles);
 router.get('/profile', getProfileInfo);

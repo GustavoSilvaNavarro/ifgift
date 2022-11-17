@@ -1,15 +1,17 @@
+import 'dotenv/config';
 import Koa from 'koa';
-const app = new Koa();
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
 
-import config from './config';
-import router from './router';
+import router from './router.js';
+
+const app = new Koa();
+const PORT = process.env.PORT || 8080;
 
 app.use(bodyParser());
 app.use(cors());
 app.use(router.routes());
 
-app.listen(config.PORT, () => {
-  console.log(`Server kickin it at http://localhost:${config.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server kickin it at http://localhost:${PORT}`);
 });

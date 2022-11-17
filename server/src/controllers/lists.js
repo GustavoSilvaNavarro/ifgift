@@ -1,4 +1,4 @@
-import MyList from '../models/myList';
+import MyList from '../models/myList.js';
 
 export const fetchMyLists = async ctx => {
   try {
