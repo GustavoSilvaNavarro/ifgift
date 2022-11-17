@@ -13,5 +13,5 @@ app.use(cors());
 app.use(router.routes());
 
 app.listen(PORT, () => {
-  console.log(`Koa Server working on Port: ${PORT} - Worker: ${process.pid}`);
+  console.log(`legacy project`);
 });
