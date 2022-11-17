@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
     "@koa/cors": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
