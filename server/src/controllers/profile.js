@@ -1,7 +1,7 @@
-const Profile = require('../models/profile');
-const jwt = require('jsonwebtoken');
+import Profile from '../models/profile';
+import jwt from 'jsonwebtoken';
 
-exports.getAllProfiles = async (ctx) => {
+export const getAllProfiles = async ctx => {
   try {
     const result = await Profile.find();
     ctx.body = result;
@@ -10,13 +10,13 @@ exports.getAllProfiles = async (ctx) => {
     console.error(error);
     ctx.status = 400;
   }
-}
+};
 
-exports.getProfileInfo = async (ctx) => {
+export const getProfileInfo = async ctx => {
   try {
     const token = ctx.request.header.authorization.split(' ')[1];
     const { _id } = jwt.verify(token, 'secret key');
-    const result = await Profile.findOne({_id});
+    const result = await Profile.findOne({ _id });
     ctx.body = result;
     ctx.status = 200;
   } catch (error) {
@@ -25,14 +25,14 @@ exports.getProfileInfo = async (ctx) => {
   }
 };
 
-exports.insertProfile = async (ctx) => {
+export const insertProfile = async ctx => {
   try {
-    let profile = await Profile.findOne({email:ctx.request.body.email});
+    let profile = await Profile.findOne({ email: ctx.request.body.email });
     if (!profile) {
       profile = await Profile.create(ctx.request.body);
     }
-    const newToken = jwt.sign({_id: profile._id}, 'secret key')
-    ctx.body = { profile, token:newToken };
+    const newToken = jwt.sign({ _id: profile._id }, 'secret key');
+    ctx.body = { profile, token: newToken };
     ctx.status = 201;
   } catch (error) {
     console.log('Error creating profile in controller');
@@ -40,13 +40,13 @@ exports.insertProfile = async (ctx) => {
   }
 };
 
-exports.updateProfile = async (ctx) => {
+export const updateProfile = async ctx => {
   try {
-    let profile = await Profile.updateOne(ctx.request.body)
+    let profile = await Profile.updateOne(ctx.request.body);
     ctx.body = profile;
     ctx.status = 200;
   } catch (error) {
-    console.log('Error updating profile in controller.')
+    console.log('Error updating profile in controller.');
     ctx.status = 400;
   }
-}
+};

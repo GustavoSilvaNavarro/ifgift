@@ -1,8 +1,6 @@
-
-
 const BASEurl = 'http://localhost:3333';
 
-export const getListsByUserId = async (userId) => {
+export const getListsByUserId = async userId => {
   try {
     const result = await fetch(`${BASEurl}/mylists/${userId}`, {
       method: 'GET',
@@ -14,7 +12,7 @@ export const getListsByUserId = async (userId) => {
   }
 };
 
-export const addToMyLists = async (userId) => {
+export const addToMyLists = async userId => {
   try {
     const result = await fetch(`${BASEurl}/mylists/${userId}`, {
       method: 'POST',
@@ -40,14 +38,14 @@ export const updateList = async (listId, list) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(list),
-    })
+    });
     return result.json();
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
-}
+};
 
-export const deleteList = async (listId) => {
+export const deleteList = async listId => {
   try {
     await fetch(`${BASEurl}/mylists/${listId}`, {
       method: 'DELETE',
@@ -55,10 +53,9 @@ export const deleteList = async (listId) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
-    })
+      },
+    });
   } catch (error) {
     console.error(error);
   }
-}
-
+};

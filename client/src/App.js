@@ -11,34 +11,28 @@ import Search from './Components/Search/Search';
 import MyLists from './Components/MyLists/MyLists';
 import LogIn from './Components/LogIn/LogIn';
 
-
 function App() {
   const { isAuthenticated } = useAuth0();
 
   if (isAuthenticated) {
     return (
-        <BrowserRouter>
-          <div className="app-container">
-            <Header />
-            <div className="body-container">
-              <Routes>
-                <Route path="/" element={<Profile />} />
-                <Route path="/editprofile" element={<ProfileForm />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/mylists" element={<MyLists />} />
-              </Routes>
-            </div>
-            <Footer />
-          </div>
-        </BrowserRouter>
-    );
-
-  } else {
-    return (
       <BrowserRouter>
-        {<LogIn />}
+        <div className="app-container">
+          <Header />
+          <div className="body-container">
+            <Routes>
+              <Route path="/" element={<Profile />} />
+              <Route path="/editprofile" element={<ProfileForm />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/mylists" element={<MyLists />} />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
       </BrowserRouter>
-    )
+    );
+  } else {
+    return <BrowserRouter>{<LogIn />}</BrowserRouter>;
   }
 }
 

@@ -1,4 +1,4 @@
-const mongoose = require('./index');
+import mongoose from './index';
 
 const Schema = mongoose.Schema;
 
@@ -15,9 +15,9 @@ const ProfileSchema = new Schema({
   avoidList: String,
   charityList: String,
   registryList: String,
-  friendList: String
+  friendList: String,
 });
 
 const Profile = mongoose.model('Profile', ProfileSchema);
 
-module.exports = Profile;
+export default Profile;

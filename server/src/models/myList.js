@@ -1,4 +1,4 @@
-const mongoose = require('./index');
+import mongoose from './index';
 
 const Schema = mongoose.Schema;
 
@@ -13,4 +13,4 @@ const MyListSchema = new Schema({
 
 const MyList = mongoose.model('MyList', MyListSchema);
 
-module.exports = MyList;
+export default MyList;

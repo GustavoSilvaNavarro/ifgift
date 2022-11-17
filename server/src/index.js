@@ -1,10 +1,10 @@
-const Koa = require('koa');
+import Koa from 'koa';
 const app = new Koa();
-const bodyParser = require('koa-bodyparser');
-const cors = require('@koa/cors');
+import bodyParser from 'koa-bodyparser';
+import cors from '@koa/cors';
 
-const config = require('./config');
-const router = require('./router');
+import config from './config';
+import router from './router';
 
 app.use(bodyParser());
 app.use(cors());
@@ -12,4 +12,4 @@ app.use(router.routes());
 
 app.listen(config.PORT, () => {
   console.log(`Server kickin it at http://localhost:${config.PORT}`);
-})
+});

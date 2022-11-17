@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { Auth0Provider } from '@auth0/auth0-react'
+import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import './index.css';
 
@@ -11,10 +11,10 @@ root.render(
   <Auth0Provider
     domain="dev-47be1s85c4fojg4f.us.auth0.com"
     clientId="hdI1CeK96NbkMkuVgwp3BY5R3960Uf0F"
-    redirectUri='http://localhost:3000'
+    redirectUri="http://localhost:3000"
   >
     {/* <React.StrictMode> */}
-      <App />
+    <App />
     {/* </React.StrictMode>, */}
   </Auth0Provider>
 );
