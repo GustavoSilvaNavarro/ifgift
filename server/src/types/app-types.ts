@@ -14,6 +14,7 @@ export interface IList {
   title?: string;
   recipient?: string;
   text?: string;
+  items?: Array<string>;
 }
 
 export interface IMyToken {

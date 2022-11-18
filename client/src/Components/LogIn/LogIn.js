@@ -30,7 +30,7 @@ const LogIn = () => {
           <h2>To:</h2>
           <h2 className="you">You!</h2>
         </div>
-        <p className="question">Don&#39t know what to get that special someone?</p>
+        <p className="question">Don&#39;t know what to get that special someone?</p>
         <ul className="function-list">
           <li>Check their ifGift want list!</li>
           <li>Keep your own lists of gifting ideas for all the special folks in your life.</li>

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 import UserModel from '../schemas/user-schemas';
 import env from '../../utils/utils';
-import { checkValidEmail } from '../../helpers/helper-functions';
+import { checkValidEmail, signToken } from '../../helpers/helper-functions';
 import { IMyToken, IUser } from '../../types/app-types';
 import { AppErrors, HttpStatusCode } from '../../helpers/app-error';
 
@@ -20,13 +20,12 @@ export const insertNewUser = async (email: string) => {
       const newUser = new UserModel({ email });
       await newUser.save();
 
-      const token = jwt.sign({ id: newUser.id, email }, env.secretKeyJWT, { expiresIn: '1hr' });
-
-      console.log(token);
+      const token = signToken(newUser.id, email);
 
       return { newUser, token };
     }
-    throw new AppErrors({ message: 'User already exist', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });
+
+    return { userExist, token: signToken(userExist.id, email) };
   }
 
   throw new AppErrors({ message: 'Email not valid', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });

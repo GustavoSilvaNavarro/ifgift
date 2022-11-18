@@ -7,6 +7,7 @@ const ListSchema = new Schema<IList>(
     title: { type: String, trim: true },
     recipient: { type: String, trim: true },
     text: { type: String, trim: true },
+    items: [{ type: String, trim: true }],
   },
   {
     timestamps: true,
