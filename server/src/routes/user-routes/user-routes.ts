@@ -1,12 +1,12 @@
 import Router from '@koa/router';
 
-import { getAllUsers } from '../../controllers/user-controllers';
+import { getAllUsers, addNewUser, getSingleUserInfo, updateUserInfo } from '../../controllers/user-controllers';
 
 const router = new Router();
 
-router.get('/allprofiles', getAllUsers);
-// router.get('/profile', getProfileInfo);
-// router.post('/profile', insertProfile);
-// router.put('/profile', updateProfile);
+router.get('/user', getAllUsers);
+router.post('/user', addNewUser);
+router.get('/single-user', getSingleUserInfo);
+router.put('/user/:userEmail', updateUserInfo);
 
 export default router;

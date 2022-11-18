@@ -15,3 +15,10 @@ export interface IList {
   recipient?: string;
   text?: string;
 }
+
+export interface IMyToken {
+  id: string;
+  email: string;
+  iat: number;
+  exp: number;
+}
