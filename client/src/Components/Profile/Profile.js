@@ -30,6 +30,7 @@ const Profile = () => {
 
   const getUserData = async () => {
     const accessToken = localStorage.getItem('accessToken');
+
     const fetchedUser = await getUserInfo(accessToken);
     setFetched(true);
     setUserData(fetchedUser);

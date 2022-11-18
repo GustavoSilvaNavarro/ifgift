@@ -2,7 +2,7 @@ const BASEurl = 'http://localhost:8080';
 
 export const getAllUsers = async () => {
   try {
-    const result = await fetch(`${BASEurl}/allprofiles`, {
+    const result = await fetch(`${BASEurl}/user`, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -18,7 +18,7 @@ export const getAllUsers = async () => {
 
 export const getUserInfo = async userId => {
   try {
-    const result = await fetch(`${BASEurl}/profile`, {
+    const result = await fetch(`${BASEurl}/single-user`, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -35,7 +35,7 @@ export const getUserInfo = async userId => {
 
 export const addUser = async user => {
   try {
-    const result = await fetch(`${BASEurl}/profile`, {
+    const result = await fetch(`${BASEurl}/user`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -52,7 +52,7 @@ export const addUser = async user => {
 
 export const updateUser = async user => {
   try {
-    const result = await fetch(`${BASEurl}/profile`, {
+    const result = await fetch(`${BASEurl}/user/${user.email}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {

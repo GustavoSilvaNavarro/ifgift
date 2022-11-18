@@ -2,7 +2,7 @@ const BASEurl = 'http://localhost:8080';
 
 export const getListsByUserId = async userId => {
   try {
-    const result = await fetch(`${BASEurl}/mylists/${userId}`, {
+    const result = await fetch(`${BASEurl}/list/${userId}`, {
       method: 'GET',
       mode: 'cors',
     });
@@ -14,7 +14,7 @@ export const getListsByUserId = async userId => {
 
 export const addToMyLists = async userId => {
   try {
-    const result = await fetch(`${BASEurl}/mylists/${userId}`, {
+    const result = await fetch(`${BASEurl}/list/${userId}`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -30,7 +30,7 @@ export const addToMyLists = async userId => {
 
 export const updateList = async (listId, list) => {
   try {
-    const result = await fetch(`${BASEurl}/mylists/${listId}`, {
+    const result = await fetch(`${BASEurl}/list/${listId}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {
@@ -47,7 +47,7 @@ export const updateList = async (listId, list) => {
 
 export const deleteList = async listId => {
   try {
-    await fetch(`${BASEurl}/mylists/${listId}`, {
+    await fetch(`${BASEurl}/list/${listId}`, {
       method: 'DELETE',
       mode: 'cors',
       headers: {
