@@ -33,7 +33,7 @@ export const getSingleUserInfo = async (ctx: Context) => {
       ctx.status = 200;
       ctx.body = userData;
     } else {
-      ctx.status = 404;
+      ctx.status = 400;
       ctx.body = {
         message: 'Invalid Token',
         error: true,

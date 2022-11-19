@@ -54,7 +54,7 @@ export const updateUser = async (userEmail: string, data: IUser) => {
       return user;
     }
 
-    throw new AppErrors({ message: 'User already exist', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });
+    throw new AppErrors({ message: 'User does not exist', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });
   }
 
   throw new AppErrors({ message: 'Email not valid', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });

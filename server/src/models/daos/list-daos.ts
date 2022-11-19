@@ -31,7 +31,7 @@ export const addToList = async (listId: string, data: IList) => {
       await listExist.save();
       return listExist;
     }
-    throw new AppErrors({ message: 'List not found', httpCode: HttpStatusCode.NOT_FOUND, code: 4 });
+    throw new AppErrors({ message: 'List not found', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });
   }
   throw new AppErrors({ message: 'Credential Invalid', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });
 };
@@ -43,7 +43,7 @@ export const deleteList = async (listId: string) => {
     // console.log(deletedList);
     if (deletedList) return deletedList;
 
-    throw new AppErrors({ message: 'List not found', httpCode: HttpStatusCode.NOT_FOUND, code: 4 });
+    throw new AppErrors({ message: 'List not found', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });
   }
 
   throw new AppErrors({ message: 'Credential Invalid', httpCode: HttpStatusCode.BAD_REQUEST, code: 4 });

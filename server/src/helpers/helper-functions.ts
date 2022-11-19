@@ -7,7 +7,7 @@ export const checkValidEmail = (email: string): boolean => {
 };
 
 export const signToken = (idUser: string, email: string): string => {
-  const token = jwt.sign({ id: idUser, email }, env.secretKeyJWT, { expiresIn: '1hr' });
+  const token = jwt.sign({ id: idUser, email: email }, env.secretKeyJWT, { expiresIn: '1hr' });
 
   return token;
 };
