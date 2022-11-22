@@ -1,10 +1,10 @@
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Box } from '@chakra-ui/react';
 import { MinusIcon, AddIcon } from '@chakra-ui/icons';
-import ContentEditable from 'react-contenteditable';
 
 import './SearchLists.css';
+import { IUser } from '../../../types/app-types';
 
-function SearchLists(props) {
+function SearchLists({ user }: { user: IUser }): JSX.Element {
   return (
     <>
       <Accordion className="profile-list-container" allowToggle>
@@ -25,13 +25,7 @@ function SearchLists(props) {
               </h1>
               <AccordionPanel className="profile-list-page">
                 <div className="note-top"></div>
-                <ContentEditable
-                  className="list-text"
-                  html={props.wantList ? props.wantList : ''}
-                  value={props.wantList}
-                  contentEditable={false}
-                />
-                {/* <div>{props.wantList}</div> */}
+                <textarea className="list-text" value={user.wantList} cols={30} rows={10}></textarea>
               </AccordionPanel>
             </>
           )}
@@ -56,12 +50,7 @@ function SearchLists(props) {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <ContentEditable
-                  className="list-text"
-                  html={props.avoidList ? props.avoidList : ''}
-                  value={props.avoidList}
-                  contentEditable={false}
-                />
+                <textarea className="list-text" value={user.avoidList} cols={30} rows={10}></textarea>
               </AccordionPanel>
             </>
           )}
@@ -86,12 +75,7 @@ function SearchLists(props) {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <ContentEditable
-                  className="list-text"
-                  html={props.charityList ? props.charityList : ''}
-                  value={props.charityList}
-                  contentEditable={false}
-                />
+                <textarea className="list-text" value={user.charityList} cols={30} rows={10}></textarea>
               </AccordionPanel>
             </>
           )}
@@ -116,12 +100,7 @@ function SearchLists(props) {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <ContentEditable
-                  className="list-text"
-                  html={props.registryList ? props.registryList : ''}
-                  value={props.registryList}
-                  contentEditable={false}
-                />
+                <textarea className="list-text" value={user.registryList} cols={30} rows={10}></textarea>
               </AccordionPanel>
             </>
           )}

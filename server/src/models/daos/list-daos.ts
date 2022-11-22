@@ -25,7 +25,8 @@ export const insertNewItemToList = async (userId: string) => {
 
 export const addToList = async (listId: string, data: IList) => {
   if (isValidObjectId(listId) && data) {
-    const listExist = await ListModel.findOne({ id: listId });
+    const listExist = await ListModel.findOne({ _id: listId });
+
     if (listExist && data.text && data.title) {
       Object.assign(listExist, data);
       await listExist.save();

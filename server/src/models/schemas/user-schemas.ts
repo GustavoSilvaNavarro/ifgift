@@ -10,6 +10,12 @@ const UserSchema = new Schema<IUser>(
     address: { type: String, trim: true },
     birthday: { type: Date },
     userName: { type: String, trim: true },
+    giftPref: { type: String, trim: true },
+    wantList: { type: String, trim: true },
+    avoidList: { type: String, trim: true },
+    charityList: { type: String, trim: true },
+    registryList: { type: String, trim: true },
+    friendList: { type: String, trim: true },
   },
   {
     timestamps: true,

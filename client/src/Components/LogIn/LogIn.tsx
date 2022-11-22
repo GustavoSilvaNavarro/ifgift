@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import './LogIn.css';
@@ -36,7 +36,13 @@ const LogIn = () => {
           <li>Keep your own lists of gifting ideas for all the special folks in your life.</li>
         </ul>
         <p className="ifgift-copy">Unwrap the better way to give.</p>
-        <button onClick={loginWithPopup} type="button" className="login-btn">
+        <button
+          onClick={() => {
+            void loginWithPopup();
+          }}
+          type="button"
+          className="login-btn"
+        >
           Sign up
         </button>
       </div>

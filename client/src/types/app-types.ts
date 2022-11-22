@@ -1,11 +1,10 @@
-import { Types } from 'mongoose';
-
 export interface IUser {
+  _id?: string;
   email: string;
   name?: string;
   pronouns?: string;
   address?: string;
-  birthday?: Date;
+  birthday?: string;
   userName?: string;
   giftPref?: string;
   wantList?: string;
@@ -16,16 +15,15 @@ export interface IUser {
 }
 
 export interface IList {
-  createdBy: Types.ObjectId;
+  _id?: string;
+  createdBy: string;
   title?: string;
   recipient?: string;
   text?: string;
   items?: Array<string>;
 }
 
-export interface IMyToken {
-  id: string;
-  email: string;
-  iat: number;
-  exp: number;
+export interface IUserContext {
+  userInfo: IUser | null;
+  updateUserInfo: (updatedUser: IUser) => Promise<void>;
 }

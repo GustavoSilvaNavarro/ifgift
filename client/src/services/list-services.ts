@@ -1,20 +1,21 @@
-const BASEurl = 'http://localhost:8080';
+import { env } from '../helpers/env';
+import { IList } from '../types/app-types';
 
-export const getListsByUserId = async userId => {
+export const getListsByUserId = async (userId: string) => {
   try {
-    const result = await fetch(`${BASEurl}/list/${userId}`, {
+    const result = await fetch(`${env.baseUrl}/list/${userId}`, {
       method: 'GET',
       mode: 'cors',
     });
-    return result.json();
+    return (await result.json()) as unknown as Array<IList>;
   } catch (err) {
     console.error(err);
   }
 };
 
-export const addToMyLists = async userId => {
+export const addToMyLists = async (userId: string) => {
   try {
-    const result = await fetch(`${BASEurl}/list/${userId}`, {
+    const result = await fetch(`${env.baseUrl}/list/${userId}`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -22,15 +23,15 @@ export const addToMyLists = async userId => {
         'Content-Type': 'application/json',
       },
     });
-    return await result.json();
+    return (await result.json()) as unknown as IList;
   } catch (err) {
     console.error(err);
   }
 };
 
-export const updateList = async (listId, list) => {
+export const updateList = async (listId: string, list: IList) => {
   try {
-    const result = await fetch(`${BASEurl}/list/${listId}`, {
+    const result = await fetch(`${env.baseUrl}/list/${listId}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {
@@ -39,15 +40,15 @@ export const updateList = async (listId, list) => {
       },
       body: JSON.stringify(list),
     });
-    return result.json();
+    return (await result.json()) as unknown as IList;
   } catch (err) {
     console.error(err);
   }
 };
 
-export const deleteList = async listId => {
+export const deleteList = async (listId: string) => {
   try {
-    await fetch(`${BASEurl}/list/${listId}`, {
+    const data = await fetch(`${env.baseUrl}/list/${listId}`, {
       method: 'DELETE',
       mode: 'cors',
       headers: {
@@ -55,6 +56,8 @@ export const deleteList = async listId => {
         'Content-Type': 'application/json',
       },
     });
+
+    return await data.text();
   } catch (error) {
     console.error(error);
   }

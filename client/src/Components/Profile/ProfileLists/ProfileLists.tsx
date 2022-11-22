@@ -1,59 +1,36 @@
-import { useState, useEffect } from 'react';
-import ContentEditable from 'react-contenteditable';
-import { useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, Box } from '@chakra-ui/react';
 import { MinusIcon, AddIcon } from '@chakra-ui/icons';
 
 import './ProfileLists.css';
 
-import { updateUser, getUserInfo } from '../../../Services/profileService';
+import { UserContext } from '../../../context/UserContext';
+import { IUser } from '../../../types/app-types';
 
 function ProfileLists() {
+  const userCtx = useContext(UserContext);
   const [wantListText, setWantListText] = useState('');
   const [avoidListText, setAvoidListText] = useState('');
   const [charityListText, setCharityListText] = useState('');
   const [registryListText, setRegistryListText] = useState('');
-  const wantsRef = useRef();
-  const avoidsRef = useRef();
-  const charityRef = useRef();
-  const registryRef = useRef();
 
   useEffect(() => {
-    getProfileLists();
-  }, []);
+    if (userCtx && userCtx.userInfo) {
+      if (userCtx.userInfo.wantList) setWantListText(userCtx.userInfo.wantList);
+      if (userCtx.userInfo.avoidList) setAvoidListText(userCtx.userInfo.avoidList);
+      if (userCtx.userInfo.charityList) setCharityListText(userCtx.userInfo.charityList);
+      if (userCtx.userInfo.registryList) setRegistryListText(userCtx.userInfo.registryList);
+    }
+  }, [userCtx]);
 
-  const getProfileLists = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    const fetchedUser = await getUserInfo(accessToken);
-    setWantListText(fetchedUser.wantList);
-    setAvoidListText(fetchedUser.avoidList);
-    setCharityListText(fetchedUser.charityList);
-    setRegistryListText(fetchedUser.registryList);
+  const ListHandler = async (property: string, ctxList: string) => {
+    if (userCtx && userCtx.userInfo && ctxList !== '' && userCtx.userInfo[property as keyof IUser] !== ctxList) {
+      const userToUpdate = { ...userCtx.userInfo };
+      userToUpdate[property as keyof IUser] = ctxList;
+
+      await userCtx.updateUserInfo(userToUpdate);
+    }
   };
-
-  function handleWantListChange(e) {
-    e.preventDefault();
-    const wantList = wantListText;
-    updateUser({ wantList });
-  }
-
-  function handleAvoidListChange(e) {
-    e.preventDefault();
-    const avoidList = avoidListText;
-    updateUser({ avoidList });
-  }
-
-  function handleCharityListChange(e) {
-    e.preventDefault();
-    const charityList = charityListText;
-    updateUser({ charityList });
-  }
-
-  function handleRegistryListChange(e) {
-    e.preventDefault();
-    const registryList = registryListText;
-    updateUser({ registryList });
-  }
 
   return (
     <>
@@ -75,18 +52,18 @@ function ProfileLists() {
               </h1>
               <AccordionPanel className="profile-list-page">
                 <div className="note-top"></div>
-                <ContentEditable
+                <textarea
                   className="profile-list-text"
-                  innerRef={wantsRef}
-                  tagName="div"
-                  html={wantListText ? wantListText : ''}
-                  onChange={e => {
-                    const html = e.target.value;
-                    setWantListText(html);
-                  }}
                   value={wantListText}
-                />
-                <button className="save-change-btn" onClick={handleWantListChange}>
+                  onChange={e => setWantListText(e.target.value)}
+                  cols={30}
+                  rows={10}
+                ></textarea>
+                <button
+                  className="save-change-btn"
+                  disabled={wantListText === ''}
+                  onClick={() => void ListHandler('wantList', wantListText)}
+                >
                   Save Changes
                 </button>
               </AccordionPanel>
@@ -113,17 +90,18 @@ function ProfileLists() {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <ContentEditable
+                <textarea
                   className="profile-list-text"
-                  innerRef={avoidsRef}
-                  tagName="div"
-                  html={avoidListText ? avoidListText : ''}
-                  onChange={e => {
-                    const html = e.target.value;
-                    setAvoidListText(html);
-                  }}
-                />
-                <button className="save-change-btn" onClick={handleAvoidListChange}>
+                  value={avoidListText}
+                  onChange={e => setAvoidListText(e.target.value)}
+                  cols={30}
+                  rows={10}
+                ></textarea>
+                <button
+                  className="save-change-btn"
+                  disabled={avoidListText === ''}
+                  onClick={() => void ListHandler('avoidList', avoidListText)}
+                >
                   Save Changes
                 </button>
               </AccordionPanel>
@@ -150,17 +128,18 @@ function ProfileLists() {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <ContentEditable
+                <textarea
                   className="profile-list-text"
-                  innerRef={charityRef}
-                  tagName="div"
-                  html={charityListText ? charityListText : ''}
-                  onChange={e => {
-                    const html = e.target.value;
-                    setCharityListText(html);
-                  }}
-                />
-                <button className="save-change-btn" onClick={handleCharityListChange}>
+                  value={charityListText}
+                  onChange={e => setCharityListText(e.target.value)}
+                  cols={30}
+                  rows={10}
+                ></textarea>
+                <button
+                  className="save-change-btn"
+                  disabled={charityListText !== ''}
+                  onClick={() => void ListHandler('charityList', charityListText)}
+                >
                   Save Changes
                 </button>
               </AccordionPanel>
@@ -187,17 +166,18 @@ function ProfileLists() {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <ContentEditable
+                <textarea
                   className="profile-list-text"
-                  innerRef={registryRef}
-                  tagName="div"
-                  html={registryListText ? registryListText : ''}
-                  onChange={e => {
-                    const html = e.target.value;
-                    setRegistryListText(html);
-                  }}
-                />
-                <button className="save-change-btn" onClick={handleRegistryListChange}>
+                  value={registryListText}
+                  onChange={e => setRegistryListText(e.target.value)}
+                  cols={30}
+                  rows={10}
+                ></textarea>
+                <button
+                  className="save-change-btn"
+                  onClick={() => void ListHandler('registryList', registryListText)}
+                  disabled={registryListText === ''}
+                >
                   Save Changes
                 </button>
               </AccordionPanel>
