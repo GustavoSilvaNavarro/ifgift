@@ -15,28 +15,23 @@ library.add(fas);
 const fileCirclePlusLookup: IconLookup = { prefix: 'fas', iconName: 'file-circle-plus' };
 const fileCirclePlusIconDefinition: IconDefinition = findIconDefinition(fileCirclePlusLookup);
 
-const MyLists = (): JSX.Element => {
+export const MyLists = (): JSX.Element => {
   const userCtx = useContext(UserContext);
   const [allMyLists, setAllMyLists] = useState([] as IList[]);
 
   useEffect(() => {
-    if (userCtx && userCtx.userInfo) {
-      if (userCtx.userInfo._id) {
-        void getListsByUserId(userCtx.userInfo._id).then(lists => {
-          if (lists && lists.length > 0) setAllMyLists(lists);
-        });
-      }
+    if (userCtx?.userInfo?._id) {
+      void getListsByUserId(userCtx.userInfo._id).then(lists => {
+        if (lists && lists.length > 0) setAllMyLists(lists);
+      });
     }
   }, [userCtx]);
 
   const createNewList = async () => {
-    if (userCtx && userCtx.userInfo) {
-      if (userCtx.userInfo._id) {
-        const list = await addToMyLists(userCtx.userInfo._id);
-        if (list) {
-          allMyLists.push(list);
-          setAllMyLists([...allMyLists]);
-        }
+    if (userCtx?.userInfo?._id) {
+      const list = await addToMyLists(userCtx.userInfo._id);
+      if (list) {
+        setAllMyLists(prevList => [...prevList, list]);
       }
     }
   };
@@ -44,7 +39,7 @@ const MyLists = (): JSX.Element => {
   if (allMyLists && allMyLists.length > 0) {
     return (
       <div className="myList-container">
-        <button className="create-list-btn" onClick={() => void createNewList()}>
+        <button className="create-list-btn" data-testid="btnAddToListTest" onClick={() => void createNewList()}>
           <FontAwesomeIcon icon={fileCirclePlusIconDefinition} />
         </button>
         <h1 className="container-title">MyLists</h1>

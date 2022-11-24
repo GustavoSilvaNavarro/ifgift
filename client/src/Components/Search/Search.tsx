@@ -7,7 +7,7 @@ import SearchLists from './SearchLists/SearchLists';
 import { getAllUsers } from '../../services/user-service';
 import { IUser } from '../../types/app-types';
 
-const Search = (): JSX.Element | null => {
+export const Search = (): JSX.Element | null => {
   const [allUsers, setAllUsers] = useState([] as Array<IUser>);
   const [options, setOptions] = useState([] as { value: IUser; label: string }[]);
   const [selectedUser, setSelectedUser] = useState({ email: '' } as IUser);
@@ -31,10 +31,15 @@ const Search = (): JSX.Element | null => {
   if (selectedUser.email === '') {
     return allUsers.length > 0 ? (
       <div className="search-container">
-        <select className="search-bar" value={selectedUser.email} onChange={handleSearchChange}>
+        <select
+          className="search-bar"
+          data-testid="select-userTest"
+          value={selectedUser.email}
+          onChange={handleSearchChange}
+        >
           <option />
           {options.map(opt => (
-            <option key={opt.label} value={opt.label}>
+            <option key={opt.label} data-testid="optionUser-test" value={opt.label}>
               {opt.value.email}
             </option>
           ))}
@@ -44,10 +49,15 @@ const Search = (): JSX.Element | null => {
   } else {
     return allUsers.length > 0 ? (
       <div className="search-container">
-        <select className="search-bar" value={selectedUser.email} onChange={handleSearchChange}>
+        <select
+          className="search-bar"
+          value={selectedUser.email}
+          data-testid="select-userTest"
+          onChange={handleSearchChange}
+        >
           <option />
           {options.map(opt => (
-            <option key={opt.label} value={opt.label}>
+            <option key={opt.label} data-testid="optionUser-test" value={opt.label}>
               {opt.value.email}
             </option>
           ))}

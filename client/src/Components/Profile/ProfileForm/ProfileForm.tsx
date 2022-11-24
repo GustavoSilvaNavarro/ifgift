@@ -28,12 +28,10 @@ export const ProfileForm = (): JSX.Element | null => {
     setState({ ...state, [name]: value });
   };
 
-  console.log(state);
-
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (userCtx && userCtx.userInfo && userCtx.userInfo.email) {
+    if (userCtx?.userInfo?.email) {
       const userToUpdate = { ...state } as IUser;
       const birthdayIso = new Date(state.birthday).toISOString(); // check
       userToUpdate.email = userCtx.userInfo.email;
@@ -45,7 +43,7 @@ export const ProfileForm = (): JSX.Element | null => {
   };
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <div data-testid="loadingPage">Loading ...</div>;
   }
 
   return isAuthenticated && userCtx?.userInfo ? (
@@ -53,7 +51,9 @@ export const ProfileForm = (): JSX.Element | null => {
       <h1 className="form-title">Edit Your Profile</h1>
       <h2 className="input-title">name:</h2>
       <input
+        aria-label="profileForm-input"
         required
+        data-testid="testName"
         name="name"
         id="name"
         onChange={handleChange}
@@ -64,6 +64,8 @@ export const ProfileForm = (): JSX.Element | null => {
       <h2 className="input-title">username:</h2>
       <input
         required
+        aria-label="profileForm-input"
+        data-testid="testUserName"
         name="userName"
         onChange={handleChange}
         className="name-input"
@@ -73,16 +75,20 @@ export const ProfileForm = (): JSX.Element | null => {
       <h2 className="input-title">pronouns:</h2>
       <input
         onChange={handleChange}
+        aria-label="profileForm-input"
+        data-testid="testPronouns"
         name="pronouns"
         className="name-input"
         type="text"
         placeholder="your pronouns..."
       />
       <h2 className="input-title">e-mail:</h2>
-      <p>{user && user.email ? user.email : 'example@test.com'}</p>
+      <p data-testid="emailTestId">{user && user.email ? user.email : 'example@test.com'}</p>
       <h2 className="input-title">birthday:</h2>
       <input
         min={new Date().toISOString().slice(0, -8)}
+        aria-label="profileForm-input"
+        data-testid="testBirthday"
         onChange={handleChange}
         name="birthday"
         className="date-input"
@@ -92,6 +98,8 @@ export const ProfileForm = (): JSX.Element | null => {
       <input
         name="address"
         onChange={handleChange}
+        data-testid="testAddress"
+        aria-label="profileForm-input"
         className="address-input"
         type="text"
         placeholder="1212 Give Better Blvd. Ifsburg, Giftesota, USA"

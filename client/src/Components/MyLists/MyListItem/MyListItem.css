@@ -75,10 +75,13 @@
 }
 
 .trash-btn {
-  display: flex;
   border: none;
   background: none;
   margin: 0 0.4rem;
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .plus-minus-btn {
@@ -126,12 +129,11 @@
   color: #757575;
   width: 70px;
   border: none;
+  cursor: pointer;
   border-radius: 4px;
   padding: 3px;
   margin: 2%;
   background-color: #f9c6c9;
-  display: flex;
-  align-self: flex-end;
   box-shadow: 0 10px 10px -5px rgba(0,0,0,0.2);
 }
 
@@ -139,4 +141,10 @@
   transform: scale(0.99);
   box-shadow: 0, 5px, 5px, -5px rgba(0, 0, 0, 0.24);
   border: 1px solid #757575;
+}
+
+.btnContainer__list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

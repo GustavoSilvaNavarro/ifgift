@@ -4,10 +4,10 @@ import { MinusIcon, AddIcon } from '@chakra-ui/icons';
 import './SearchLists.css';
 import { IUser } from '../../../types/app-types';
 
-function SearchLists({ user }: { user: IUser }): JSX.Element {
+export const SearchLists = ({ user }: { user: IUser }): JSX.Element => {
   return (
     <>
-      <Accordion className="profile-list-container" allowToggle>
+      <Accordion className="profile-list-container" aria-label="listContainerTest" allowToggle>
         <AccordionItem>
           {({ isExpanded }) => (
             <>
@@ -25,14 +25,16 @@ function SearchLists({ user }: { user: IUser }): JSX.Element {
               </h1>
               <AccordionPanel className="profile-list-page">
                 <div className="note-top"></div>
-                <textarea className="list-text" value={user.wantList} cols={30} rows={10}></textarea>
+                <p className="list-text" data-testid="search-wantListTest">
+                  {user.wantList}
+                </p>
               </AccordionPanel>
             </>
           )}
         </AccordionItem>
       </Accordion>
 
-      <Accordion className="profile-list-container" allowToggle>
+      <Accordion className="profile-list-container" aria-label="listContainerTest" allowToggle>
         <AccordionItem>
           {({ isExpanded }) => (
             <>
@@ -50,14 +52,16 @@ function SearchLists({ user }: { user: IUser }): JSX.Element {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <textarea className="list-text" value={user.avoidList} cols={30} rows={10}></textarea>
+                <p className="list-text" data-testid="search-avoidListTest">
+                  {user.avoidList}
+                </p>
               </AccordionPanel>
             </>
           )}
         </AccordionItem>
       </Accordion>
 
-      <Accordion className="profile-list-container" allowToggle>
+      <Accordion className="profile-list-container" aria-label="listContainerTest" allowToggle>
         <AccordionItem>
           {({ isExpanded }) => (
             <>
@@ -75,14 +79,16 @@ function SearchLists({ user }: { user: IUser }): JSX.Element {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <textarea className="list-text" value={user.charityList} cols={30} rows={10}></textarea>
+                <p className="list-text" data-testid="search-charityListTest">
+                  {user.charityList}
+                </p>
               </AccordionPanel>
             </>
           )}
         </AccordionItem>
       </Accordion>
 
-      <Accordion className="profile-list-container" allowToggle>
+      <Accordion className="profile-list-container" aria-label="listContainerTest" allowToggle>
         <AccordionItem>
           {({ isExpanded }) => (
             <>
@@ -100,7 +106,9 @@ function SearchLists({ user }: { user: IUser }): JSX.Element {
               </h1>
               <AccordionPanel className="list-page">
                 <div className="note-top"></div>
-                <textarea className="list-text" value={user.registryList} cols={30} rows={10}></textarea>
+                <p className="list-text" data-testid="search-registryListTest">
+                  {user.registryList}
+                </p>
               </AccordionPanel>
             </>
           )}
@@ -108,6 +116,6 @@ function SearchLists({ user }: { user: IUser }): JSX.Element {
       </Accordion>
     </>
   );
-}
+};
 
 export default SearchLists;

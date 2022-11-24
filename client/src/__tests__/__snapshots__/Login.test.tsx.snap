@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component tests Render Correctly Login Component 1`] = `
+<div
+  className="login-container"
+>
+  <div
+    className="login-box"
+  >
+    <div
+      className="from-box"
+    >
+      <h2>
+        From:
+      </h2>
+      <img
+        alt="ifGift logo"
+        className="logo"
+        src="https://static.wixstatic.com/media/3dbed1_4a14f7c810ff4d40ae1be96c5c171caa~mv2.png/v1/fill/w_541,h_168,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ifGift.png"
+      />
+    </div>
+    <div
+      className="to-box"
+    >
+      <h2>
+        To:
+      </h2>
+      <h2
+        className="you"
+      >
+        You!
+      </h2>
+    </div>
+    <p
+      className="question"
+    >
+      Don't know what to get that special someone?
+    </p>
+    <ul
+      className="function-list"
+    >
+      <li>
+        Check their ifGift want list!
+      </li>
+      <li>
+        Keep your own lists of gifting ideas for all the special folks in your life.
+      </li>
+    </ul>
+    <p
+      className="ifgift-copy"
+    >
+      Unwrap the better way to give.
+    </p>
+    <button
+      className="login-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      Sign up
+    </button>
+  </div>
+</div>
+`;

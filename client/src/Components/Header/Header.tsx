@@ -1,6 +1,6 @@
 import './Header.css';
 
-function Header(): JSX.Element {
+export const Header = (): JSX.Element => {
   return (
     <nav className="header">
       <img
@@ -10,6 +10,6 @@ function Header(): JSX.Element {
       />
     </nav>
   );
-}
+};
 
 export default Header;

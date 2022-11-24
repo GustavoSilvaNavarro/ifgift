@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import './LogOutButton.css';
 
-const LogOutButton = () => {
+export const LogOutButton = () => {
   const { logout } = useAuth0();
 
   return (

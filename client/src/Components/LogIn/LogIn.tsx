@@ -1,19 +1,9 @@
-import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import './LogIn.css';
 
-import { useNavigate } from 'react-router';
-
-const LogIn = () => {
-  const navigate = useNavigate();
-  const { loginWithPopup, isAuthenticated } = useAuth0();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/home');
-    }
-  }, [navigate, isAuthenticated]);
+export const LogIn = () => {
+  const { loginWithPopup } = useAuth0();
 
   return (
     <div className="login-container">
@@ -49,5 +39,3 @@ const LogIn = () => {
     </div>
   );
 };
-
-export default LogIn;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component Tests Header Component should match Snapshot 1`] = `
+<nav
+  className="header"
+>
+  <img
+    alt="ifGift logo"
+    className="header-logo"
+    src="https://static.wixstatic.com/media/3dbed1_4a14f7c810ff4d40ae1be96c5c171caa~mv2.png/v1/fill/w_541,h_168,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ifGift.png"
+  />
+</nav>
+`;

@@ -9,7 +9,7 @@ import Profile from './Components/Profile/Profile';
 import { ProfileForm } from './Components/Profile/ProfileForm/ProfileForm';
 import Search from './Components/Search/Search';
 import MyLists from './Components/MyLists/MyLists';
-import LogIn from './Components/LogIn/LogIn';
+import { LogIn } from './Components/LogIn/LogIn';
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -32,7 +32,13 @@ function App() {
       </BrowserRouter>
     );
   } else {
-    return <BrowserRouter>{<LogIn />}</BrowserRouter>;
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LogIn />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 }
 

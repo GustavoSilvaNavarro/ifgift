@@ -2,7 +2,7 @@ import { IUser } from '../../../types/app-types';
 
 import './SearchItem.css';
 
-const SearchItem = ({ user }: { user: IUser }): JSX.Element => {
+export const SearchItem = ({ user }: { user: IUser }): JSX.Element => {
   const dateFormatter = (dateObj: string) => {
     const date = new Date(dateObj);
     const month = date.toLocaleString('en-US', { month: 'long' });
@@ -22,12 +22,24 @@ const SearchItem = ({ user }: { user: IUser }): JSX.Element => {
           <div className="gift-pref">{user.giftPref}</div>
         </div>
         <div className="result-info-box">
-          <div className="result-profile-name">{user.name}</div>
-          <div className="result-username">@{user.userName}</div>
-          <div className="result-pronouns">{user.pronouns}</div>
-          <div className="result-email">{user.email}</div>
-          <div className="result-address">{user.address}</div>
-          <div className="result-birthday">born: {dateFormatter(user.birthday ? user.birthday : '')}</div>
+          <div className="result-profile-name" aria-label="testNameId">
+            {user.name}
+          </div>
+          <div className="result-username" aria-label="testUserNameId">
+            @{user.userName}
+          </div>
+          <div className="result-pronouns" aria-label="testPronounsId">
+            {user.pronouns}
+          </div>
+          <div className="result-email" aria-label="testEmailId">
+            {user.email}
+          </div>
+          <div className="result-address" aria-label="testAddressId">
+            {user.address}
+          </div>
+          <div className="result-birthday" aria-label="testBirthdayId">
+            born: {dateFormatter(user.birthday ? user.birthday : '')}
+          </div>
         </div>
       </div>
     </div>

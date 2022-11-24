@@ -12,9 +12,6 @@ const glassIconDefinition: IconDefinition = findIconDefinition(glassLookup);
 const rectangleLookup: IconLookup = { prefix: 'fas', iconName: 'rectangle-list' };
 const rectangleIconDefinition: IconDefinition = findIconDefinition(rectangleLookup);
 
-// const usersLookup: IconLookup = { prefix: 'fas', iconName: 'users' };
-// const usersIconDefinition: IconDefinition = findIconDefinition(usersLookup);
-
 const idCardLookup: IconLookup = { prefix: 'fas', iconName: 'id-card' };
 const idCardIconDefinition: IconDefinition = findIconDefinition(idCardLookup);
 
@@ -29,10 +26,6 @@ function Footer(): JSX.Element {
         <FontAwesomeIcon icon={rectangleIconDefinition} />
         <span className="btn-name">lists</span>
       </Link>
-      {/* <Link to="/friends" className="nav-btn">
-        <FontAwesomeIcon icon={usersIconDefinition} />
-        <span className="btn-name">friends</span>
-      </Link> */}
       <Link to="/" className="nav-btn">
         <FontAwesomeIcon icon={idCardIconDefinition} />
         <span className="btn-name">profile</span>

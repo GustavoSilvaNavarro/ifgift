@@ -16,7 +16,7 @@ library.add(fas);
 const penLookup: IconLookup = { prefix: 'fas', iconName: 'pen' };
 const penIconDefinition: IconDefinition = findIconDefinition(penLookup);
 
-const Profile = (): JSX.Element | null => {
+export const Profile = (): JSX.Element | null => {
   const userCtx = useContext(UserContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -26,7 +26,7 @@ const Profile = (): JSX.Element | null => {
     return `${date.getDate()} ${month}`;
   };
 
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) return <div data-testid="profileLoader">Loading ...</div>;
 
   return isAuthenticated && userCtx?.userInfo ? (
     <div className="profile-container">
@@ -34,6 +34,7 @@ const Profile = (): JSX.Element | null => {
         <div className="img-box">
           <img
             className="profile-img"
+            data-testid="userImgTest"
             src={
               user && user.picture
                 ? user.picture
@@ -41,16 +42,28 @@ const Profile = (): JSX.Element | null => {
             }
             alt="profileimg"
           />
-          <div className="gift-preference-title">Gift Preference:</div>
+          {/* <div className="gift-preference-title">Gift Preference:</div> */}
           {/* <div className="gift-preference">{userData.giftPref}</div> */}
         </div>
         <div className="profile-info-box">
-          <div className="profile-name">{userCtx.userInfo.name}</div>
-          <div className="username">@{userCtx.userInfo.userName}</div>
-          <div className="pronouns">{userCtx.userInfo.pronouns}</div>
-          <div className="email">{userCtx.userInfo.email}</div>
-          <div className="address">{userCtx.userInfo.address}</div>
-          <div className="birthday">born: {dateFormatter(userCtx.userInfo.birthday as string)}</div>
+          <div className="profile-name" data-testid="testProfileName">
+            {userCtx.userInfo.name}
+          </div>
+          <div className="username" data-testid="testUserName">
+            @{userCtx.userInfo.userName}
+          </div>
+          <div className="pronouns" data-testid="testPronouns">
+            {userCtx.userInfo.pronouns}
+          </div>
+          <div className="email" data-testid="testEmail">
+            {userCtx.userInfo.email}
+          </div>
+          <div className="address" data-testid="testAddress">
+            {userCtx.userInfo.address}
+          </div>
+          <div className="birthday" data-testid="testBirthday">
+            born: {dateFormatter(userCtx.userInfo.birthday ? userCtx.userInfo.birthday : '')}
+          </div>
         </div>
         <LogOutButton />
         <Link to="/editprofile" className="edit-btn">

@@ -13,7 +13,7 @@ interface IProps {
   setAllMyLists: React.Dispatch<React.SetStateAction<IList[]>>;
 }
 
-function MyListItem({ myList, setAllMyLists }: IProps): JSX.Element {
+export const MyListItem = ({ myList, setAllMyLists }: IProps): JSX.Element => {
   const userCtx = useContext(UserContext);
   const [myListName, setMyListName] = useState(myList.title ? myList.title : '');
   const [myListUsername, setMyListUsername] = useState(myList.recipient ? myList.recipient : '');
@@ -63,19 +63,18 @@ function MyListItem({ myList, setAllMyLists }: IProps): JSX.Element {
   ];
 
   return (
-    <Accordion className="list-container" allowToggle>
+    <Accordion className="list-container" data-testid="arrayOfListsTest" allowToggle>
       <AccordionItem>
         {({ isExpanded }) => (
           <>
             <h1>
               <AccordionButton className="acc-btn">
                 <Box className="list-title">
-                  <h1 className="list-recipient">{myListName}</h1>
+                  <h1 className="list-recipient" aria-label="titleListTest">
+                    {myListName}
+                  </h1>
                   <h2 className="recipient-username">{myListUsername}</h2>
                 </Box>
-                <button className="trash-btn" onClick={() => void removeFromList()}>
-                  &#x1F5D1;
-                </button>
                 {isExpanded ? (
                   <MinusIcon fontSize="12px" className="plus-minus-btn" />
                 ) : (
@@ -89,19 +88,21 @@ function MyListItem({ myList, setAllMyLists }: IProps): JSX.Element {
                 <input
                   className="list-recipient-edit"
                   type="text"
+                  data-testid="inputListNameTitleTest"
                   value={myListName}
                   onChange={e => setMyListName(e.target.value)}
                   placeholder="Title: What is this list for?"
                 />
                 <select
                   className="list-username-edit"
+                  aria-label="selectUserNameTest"
                   value={myListUsername}
                   onChange={e => setMyListUsername(e.target.value)}
                   placeholder="Which friend?"
                 >
                   <option />
                   {options.map(opt => (
-                    <option key={opt.label} value={opt.value}>
+                    <option key={opt.label} data-testid="optionTestId" value={opt.value}>
                       {opt.value}
                     </option>
                   ))}
@@ -111,18 +112,28 @@ function MyListItem({ myList, setAllMyLists }: IProps): JSX.Element {
                 className="profile-list-text"
                 value={myListText}
                 onChange={e => setMyListText(e.target.value)}
+                aria-label="textAreaTextTest"
                 cols={30}
                 rows={10}
               ></textarea>
-              <button className="save-change-btn" onClick={() => void updateListHandler()}>
-                Save Changes
-              </button>
+              <div className="btnContainer__list">
+                <button className="trash-btn" onClick={() => void removeFromList()} data-testid="trashBtnId">
+                  &#x1F5D1;
+                </button>
+                <button
+                  className="save-change-btn"
+                  data-testid="btnUpdateList"
+                  onClick={() => void updateListHandler()}
+                >
+                  Save Changes
+                </button>
+              </div>
             </AccordionPanel>
           </>
         )}
       </AccordionItem>
     </Accordion>
   );
-}
+};
 
 export default MyListItem;

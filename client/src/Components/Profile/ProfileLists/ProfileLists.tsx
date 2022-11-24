@@ -7,7 +7,7 @@ import './ProfileLists.css';
 import { UserContext } from '../../../context/UserContext';
 import { IUser } from '../../../types/app-types';
 
-function ProfileLists() {
+export const ProfileLists = (): JSX.Element => {
   const userCtx = useContext(UserContext);
   const [wantListText, setWantListText] = useState('');
   const [avoidListText, setAvoidListText] = useState('');
@@ -15,7 +15,7 @@ function ProfileLists() {
   const [registryListText, setRegistryListText] = useState('');
 
   useEffect(() => {
-    if (userCtx && userCtx.userInfo) {
+    if (userCtx?.userInfo) {
       if (userCtx.userInfo.wantList) setWantListText(userCtx.userInfo.wantList);
       if (userCtx.userInfo.avoidList) setAvoidListText(userCtx.userInfo.avoidList);
       if (userCtx.userInfo.charityList) setCharityListText(userCtx.userInfo.charityList);
@@ -24,7 +24,7 @@ function ProfileLists() {
   }, [userCtx]);
 
   const ListHandler = async (property: string, ctxList: string) => {
-    if (userCtx && userCtx.userInfo && ctxList !== '' && userCtx.userInfo[property as keyof IUser] !== ctxList) {
+    if (userCtx?.userInfo && ctxList !== '' && userCtx.userInfo[property as keyof IUser] !== ctxList) {
       const userToUpdate = { ...userCtx.userInfo };
       userToUpdate[property as keyof IUser] = ctxList;
 
@@ -54,6 +54,8 @@ function ProfileLists() {
                 <div className="note-top"></div>
                 <textarea
                   className="profile-list-text"
+                  name="wantList"
+                  data-testid="wantListTextArea"
                   value={wantListText}
                   onChange={e => setWantListText(e.target.value)}
                   cols={30}
@@ -61,6 +63,7 @@ function ProfileLists() {
                 ></textarea>
                 <button
                   className="save-change-btn"
+                  data-testid="btnWantList"
                   disabled={wantListText === ''}
                   onClick={() => void ListHandler('wantList', wantListText)}
                 >
@@ -92,6 +95,8 @@ function ProfileLists() {
                 <div className="note-top"></div>
                 <textarea
                   className="profile-list-text"
+                  name="avoidList"
+                  data-testid="avoidListTextArea"
                   value={avoidListText}
                   onChange={e => setAvoidListText(e.target.value)}
                   cols={30}
@@ -99,6 +104,7 @@ function ProfileLists() {
                 ></textarea>
                 <button
                   className="save-change-btn"
+                  data-testid="btnAvoidList"
                   disabled={avoidListText === ''}
                   onClick={() => void ListHandler('avoidList', avoidListText)}
                 >
@@ -131,12 +137,15 @@ function ProfileLists() {
                 <textarea
                   className="profile-list-text"
                   value={charityListText}
+                  name="charityList"
+                  data-testid="charityListTextArea"
                   onChange={e => setCharityListText(e.target.value)}
                   cols={30}
                   rows={10}
                 ></textarea>
                 <button
                   className="save-change-btn"
+                  data-testid="btnCharityList"
                   disabled={charityListText !== ''}
                   onClick={() => void ListHandler('charityList', charityListText)}
                 >
@@ -170,11 +179,14 @@ function ProfileLists() {
                   className="profile-list-text"
                   value={registryListText}
                   onChange={e => setRegistryListText(e.target.value)}
+                  name="registryList"
+                  data-testid="registryListTextArea"
                   cols={30}
                   rows={10}
                 ></textarea>
                 <button
                   className="save-change-btn"
+                  data-testid="btnRegistryList"
                   onClick={() => void ListHandler('registryList', registryListText)}
                   disabled={registryListText === ''}
                 >
@@ -187,6 +199,6 @@ function ProfileLists() {
       </Accordion>
     </>
   );
-}
+};
 
 export default ProfileLists;
