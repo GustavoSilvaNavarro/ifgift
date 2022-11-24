@@ -25,13 +25,20 @@
     "rsuite": "^5.22.0",
     "web-vitals": "^2.1.4"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/Components/**/*.{ts,tsx}",
+      "!src/Components/ChatList/ChatList.tsx",
+      "!src/Components/Footer/Footer.tsx",
+      "!src/Components/FriendsList/FriendsList.tsx",
+      "!src/Components/Home/Home.tsx"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:jest": "jest --env=jsdom",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
+    "coverage": "npm test -- --coverage --watchAll",
     "eject": "react-scripts eject",
     "format:client": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:check-client": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
