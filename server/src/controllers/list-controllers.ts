@@ -1,11 +1,9 @@
-import { Context } from 'koa';
-
-import { IList } from '../types/app-types';
+import { IList, IModifiedContextUser, IModifiedContextList } from '../types/app-types';
 import { getListByUserId, insertNewItemToList, addToList, deleteList } from '../models/daos/list-daos';
 
-export const retrieveAllListByUserId = async (ctx: Context) => {
+export const retrieveAllListByUserId = async (ctx: IModifiedContextUser) => {
   try {
-    const lists = await getListByUserId(ctx.params.userId as string);
+    const lists = await getListByUserId(ctx.params.userId);
     ctx.status = 200;
     ctx.body = lists;
   } catch (err) {
@@ -14,9 +12,9 @@ export const retrieveAllListByUserId = async (ctx: Context) => {
   }
 };
 
-export const createNewList = async (ctx: Context) => {
+export const createNewList = async (ctx: IModifiedContextUser) => {
   try {
-    const newList = await insertNewItemToList(ctx.params.userId as string);
+    const newList = await insertNewItemToList(ctx.params.userId);
     ctx.status = 201;
     ctx.body = newList;
   } catch (err) {
@@ -25,9 +23,9 @@ export const createNewList = async (ctx: Context) => {
   }
 };
 
-export const addItemToList = async (ctx: Context) => {
+export const addItemToList = async (ctx: IModifiedContextList) => {
   try {
-    const id = ctx.params.listId as string;
+    const id = ctx.params.listId;
     const data = ctx.request.body as IList;
     const list = await addToList(id, data);
     ctx.status = 200;
@@ -38,9 +36,9 @@ export const addItemToList = async (ctx: Context) => {
   }
 };
 
-export const deleteSingleList = async (ctx: Context) => {
+export const deleteSingleList = async (ctx: IModifiedContextList) => {
   try {
-    const id = ctx.params.listId as string;
+    const id = ctx.params.listId;
     const isDeleted = await deleteList(id); // returns the object that was deleted
 
     ctx.status = 200;

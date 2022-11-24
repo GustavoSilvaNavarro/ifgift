@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import { retrieveAllUsers, insertNewUser, getUserData, updateUser } from '../models/daos/user-daos';
-import { IUser } from '../types/app-types';
+import { IUser, IModifiedContextUser } from '../types/app-types';
 
 export const getAllUsers = async (ctx: Context) => {
   try {
@@ -45,9 +45,9 @@ export const getSingleUserInfo = async (ctx: Context) => {
   }
 };
 
-export const updateUserInfo = async (ctx: Context) => {
+export const updateUserInfo = async (ctx: IModifiedContextUser) => {
   try {
-    const email = ctx.params.userEmail as string;
+    const email = ctx.params.userEmail;
     const data = ctx.request.body as IUser;
     const updatedInfo = await updateUser(email, data);
 

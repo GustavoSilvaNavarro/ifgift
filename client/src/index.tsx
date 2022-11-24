@@ -14,9 +14,7 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <Auth0Provider domain={env.domain} clientId={env.clientId} redirectUri="http://localhost:3000">
     <UserState>
-      {/* <React.StrictMode> */}
       <App />
-      {/* </React.StrictMode>, */}
     </UserState>
   </Auth0Provider>
 );

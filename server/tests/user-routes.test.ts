@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { describe, beforeAll, afterEach, expect, test } from '@jest/globals';
+import { describe, beforeAll, afterEach, expect, test, afterAll } from '@jest/globals';
 import mongoose from "mongoose";
 import { faker } from '@faker-js/faker';
 
@@ -28,6 +28,10 @@ describe('Unit tests for Backend User Route', () => {
 
   afterEach(async () => {
     await UserModel.deleteMany();
+  });
+
+  afterAll(async () => {
+    await mongoose.disconnect();
   });
 
   describe('Insert User to DB', () => {

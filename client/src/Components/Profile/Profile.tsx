@@ -42,8 +42,6 @@ export const Profile = (): JSX.Element | null => {
             }
             alt="profileimg"
           />
-          {/* <div className="gift-preference-title">Gift Preference:</div> */}
-          {/* <div className="gift-preference">{userData.giftPref}</div> */}
         </div>
         <div className="profile-info-box">
           <div className="profile-name" data-testid="testProfileName">

@@ -1,4 +1,18 @@
 import { Types } from 'mongoose';
+import { Context } from 'koa';
+
+export interface IModifiedContextUser extends Context {
+  params: {
+    userId: string;
+    userEmail: string;
+  };
+}
+
+export interface IModifiedContextList extends Context {
+  params: {
+    listId: string;
+  };
+}
 
 export interface IUser {
   email: string;

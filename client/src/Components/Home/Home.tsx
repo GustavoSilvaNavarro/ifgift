@@ -4,8 +4,6 @@ import { useAuth0, User } from '@auth0/auth0-react';
 
 import './Home.css';
 
-import { IUser } from '../../types/app-types';
-
 const Home = (): JSX.Element => {
   const { user } = useAuth0();
 
@@ -16,11 +14,10 @@ const Home = (): JSX.Element => {
   }, [user]);
 
   const verifyUser = async (user: User) => {
-    const currentUser = (await addUser({ email: user.email as string })) as unknown as {
-      newUser: IUser;
-      token: string;
-    };
-    localStorage.setItem('accessToken', currentUser.token);
+    if (user?.email) {
+      const currentUser = await addUser({ email: user.email });
+      if (currentUser?.token) localStorage.setItem('accessToken', currentUser.token);
+    }
   };
 
   return (

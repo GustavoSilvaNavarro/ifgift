@@ -10,16 +10,13 @@ export const UserState = ({ children }: { children: JSX.Element }) => {
   const [userInfo, setUserInfo] = useState<IUser | null>(null);
 
   useEffect(() => {
-    if (isAuthenticated && user) {
-      if (user.email) {
-        void addUser({ email: user.email }).then(data => {
-          if (data) {
-            console.log(data);
-            setUserInfo(data.userExist);
-            localStorage.setItem('accessToken', data.token);
-          }
-        });
-      }
+    if (isAuthenticated && user?.email) {
+      void addUser({ email: user.email }).then(data => {
+        if (data) {
+          setUserInfo(data.userExist);
+          localStorage.setItem('accessToken', data.token);
+        }
+      });
     }
   }, [isAuthenticated, user]);
 

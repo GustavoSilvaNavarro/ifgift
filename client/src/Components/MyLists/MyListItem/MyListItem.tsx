@@ -35,9 +35,7 @@ export const MyListItem = ({ myList, setAllMyLists }: IProps): JSX.Element => {
 
       if (myList._id) {
         const newList = await updateList(myList._id, listData);
-        if (newList) {
-          await getArrayOfLists(userCtx.userInfo._id);
-        }
+        if (newList) await getArrayOfLists(userCtx.userInfo._id);
       }
     }
   };
@@ -47,11 +45,7 @@ export const MyListItem = ({ myList, setAllMyLists }: IProps): JSX.Element => {
       const listDeleted = await deleteList(myList._id);
 
       if (listDeleted === 'Deleted') {
-        if (userCtx && userCtx.userInfo) {
-          if (userCtx.userInfo._id) {
-            await getArrayOfLists(userCtx.userInfo._id);
-          }
-        }
+        if (userCtx && userCtx.userInfo?._id) await getArrayOfLists(userCtx.userInfo._id);
       }
     }
   };
