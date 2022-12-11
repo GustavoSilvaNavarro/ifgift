@@ -42,7 +42,8 @@
     "eject": "react-scripts eject",
     "format:client": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:check-client": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:client": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
+    "lint:client": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -70,6 +71,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
+    "cypress": "^11.2.0",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",

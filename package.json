@@ -4,6 +4,7 @@
   "description": "Legacy Project",
   "main": "index.js",
   "scripts": {
+    "install": "cd ./server && npm i && cd ../client && npm i",
     "lint:frontend": "cd ./client && npm run lint:client",
     "lint:backend": "cd ./server && npm run lint:server",
     "test": "echo \"Error: no test specified\" && exit 1",
