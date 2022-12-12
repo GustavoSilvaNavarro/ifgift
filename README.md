@@ -4,7 +4,7 @@
   <img src="https://user-images.githubusercontent.com/66889974/206901199-7b397c3a-a141-4f9a-bd42-56557fdcfb25.png" />
 </p>
 
-If-Gift is an app that was born from the necessity act of gift-giving and how to improve it, knowing what the other person wants. In this app each user has the capacity to write different lists (Wants, Avoids, Registries or Charities) that other people can see. Also you can manage an create lists for other users, the one you can compare and adjust to the other users wishes and needs.
+If-Gift is an app that was born from the necessity act of gift-giving and how to improve it, knowing what the other person wants. In this app each user has the capacity to write different lists (Wants, Avoids, Registries or Charities) that other people can see. Also you can manage and create lists for other users, the one you can compare and adjust to the other users wishes and needs.
 
 ## Screenshots
 
@@ -54,7 +54,7 @@ BASE_URL_API= // url to connect server
 npm start
 ```
 
-## Build with
+## Built with
 ### Backend
 * [Koa](https://koajs.com/) - web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs
 * [NodeJs](https://nodejs.org/en/) - An open-source, cross-platform JavaScript runtime environment.
@@ -68,5 +68,6 @@ npm start
 * [Auth0](https://auth0.com/) - Service for authentication and authorization.
 * [Typescript](https://www.typescriptlang.org/) - TypeScript is a strongly typed programming language that builds on JavaScript.
 
-## Author
+## Collaborators
 * Gustavo Silva Navarro - [GitHub](https://github.com/GustavoSilvaNavarro) - [Linkedin](https://www.linkedin.com/in/gustavo-silva-navarro/)
+* James Warnsby - [GitHub](https://github.com/jwarnsby) - [Linkedin](https://www.linkedin.com/in/jameswarnsby)
